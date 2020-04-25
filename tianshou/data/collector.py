@@ -68,8 +68,9 @@ class Collector(object):
         Please make sure the given environment has a time limitation.
     """
 
-    def __init__(self, policy, env, buffer=None, stat_size=100, **kwargs):
+    def __init__(self, policy, env, buffer=None, stat_size=100,repeat=0, **kwargs):
         super().__init__()
+        self.repeat = repeat
         self.env = env
         self.env_num = 1
         self.collect_step = 0
@@ -258,7 +259,7 @@ class Collector(object):
                         warning_count += 1
                         self._cached_buf[i].add(**data)
                         if data['act']!=3:
-                            for _ in range(50):
+                            for _ in range(self.repeat):
                                 self._cached_buf[i].add(**data)
                     elif self._multi_buf:
                         warning_count += 1
