@@ -258,7 +258,7 @@ class Collector(object):
                         warning_count += 1
                         self._cached_buf[i].add(**data)
                         if data['act']!=3:
-                            for i in range(100):
+                            for _ in range(50):
                                 self._cached_buf[i].add(**data)
                     elif self._multi_buf:
                         warning_count += 1
