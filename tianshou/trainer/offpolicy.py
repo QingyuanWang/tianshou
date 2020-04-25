@@ -95,7 +95,7 @@ def offpolicy_trainer(policy, train_collector, test_collector, max_epoch,
                         if stat.get(k) is None:
                             stat[k] = MovAvg()
                         stat[k].add(losses[k])
-                        data[k] = f'{stat[k].get():.6f}'
+                        data[k] = f'{stat[k].get()}'
                         if writer and global_step % log_interval == 0:
                             writer.add_scalar(
                                 k + '_' + task if task else k,
